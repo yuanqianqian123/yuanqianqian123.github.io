@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper" v-cloak>
+        <input type="text" @keydown.enter="enter" v-model="int">
+        <div v-if="data" class="m-item">
+            <p class="city">城市：{{data.city}}</p>
+            <p class="ganmao">天气情况：{{data.ganmao}}</p>
+            <p class="wendu">温度：{{data.wendu}}°C</p>
+            <div class="yesterday">
+                昨天:
+                <span class="y-date">{{data.yesterday.date}}</span>
+                <span class="y-fl">{{data.yesterday.fl}}</span>
+                <span class="y-fx">{{data.yesterday.fx}}</span>
+                <span class="y-high">{{data.yesterday.high}}</span>
+                <span class="y-low">{{data.yesterday.low}}</span>
+                <span class="y-type">{{data.yesterday.type}}</span>
+            </div>
+            <div class="forecast">
+                <div class="u-forecast" v-for="i in data.forecast">
+                    <div v-for="(j, $key, $index) in i">{{j}}
+                        <div class="u-img" v-if="j==qing">
+                            <img src="img/1.png" alt="">
+                        </div>
+                        <div class="u-img" v-else-if="j==yin">
+                            <img src="img/2.png" alt="">
+                        </div>
+                        <div class="u-img" v-else-if="j==duoyun">
+                            <img src="img/3.png" alt="">
+                        </div>
+                        <div class="u-img" v-else-if="j==xiaoyu">
+                            <img src="img/6.png" alt="">
+                        </div>
+                        <div class="u-img" v-else-if="j==zhongyu">
+                            <img src="img/8.png" alt="">
+                        </div>
+                        <div class="u-img" v-else-if="j==dayu">
+                            <img src="img/7.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script>
+        new Vue({
+            el: '#wrapper',
+            data: {
+                int: '',
+                data: '',
+                qing: '晴',
+                yin: '阴',
+                duoyun: '多云',
+                xiaoyu: '小雨',
+                zhongyu: '中雨',
+                dayu: '大雨'
+            },
+            methods: {
+                enter() {
+                    this.$http.get('https://www.apiopen.top/weatherApi', {
+                        params: {
+                            city: this.int,
+                        }
+                    }).then(data => {
+                        console.log(data.data.data)
+                        this.data = data.data.data
+                    })
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
