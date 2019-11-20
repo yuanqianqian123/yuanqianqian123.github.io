@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+		.one-leave,
+		.one-enter-to {
+			opacity: 1;
+			transform:translateY(0px);
+		}
+		
+		.one-leave-active,
+		.one-enter-active {
+			transition: all .3s;
+		}
+		
+		.one-leave-to {
+			opacity: 0;
+			transform:translateY(200px);
+		}
+		.one-enter {
+			opacity: 0;
+			transform:translateY(-200px);
+		}
+		
+
+
+
+
+		.no2-leave,.no2-enter-to{
+			opacity: 1;
+			transform:translateX(0px);
+		}
+		.no2-leave-to{
+			opacity: 0;
+			transform:translateX(-100%);
+		}
+		.no2-enter{
+			opacity: 0;
+			transform:translateX(100%);
+		}
+		.no2-leave-active,
+		.no2-enter-active {
+			transition: all .3s;
+		}
+
+		
+		.two-leave,.two-enter-to{
+			opacity: 1;
+			transform:translateY(0px);
+		}
+		.two-leave-to{
+			opacity: 0;
+			transform:translateY(-200px);
+		}
+		.two-enter{
+			opacity: 0;
+			transform:translateY(200px);
+		}
+		.two-leave-active,
+		.two-enter-active {
+			transition: all .3s;
+		}
+
+	</style>
+</head>
+<body> 
+	<div id="box" style="position: relative;">
+		<div style="width:100%;height:40px;background-color: #ccc;line-height: 40px;text-align: center;border-bottom: 1px #fff solid;color: #fff;" @click="change">
+			导航
+		</div>
+		<transition :name='tname'>
+				<div v-show="onech"  style="position: relative;">
+					<div v-for="(i,index) in arr" style="width:100%;height:40px;background-color: #ccc;line-height: 40px;text-align: center;border-bottom: 1px #fff solid;color: #fff;" @click="erji(index)">
+							{{i.name}}
+						
+					</div>
+				</div>
+			</transition>
+			<div style="position: absolute;left: 0;width:100%" v-if="ejind">
+				<transition :name="twon">
+					<div v-show="twoch">
+						<div style="width:100%;height:40px;background-color: #ccc;line-height: 40px;text-align: center;border-bottom: 1px #fff solid;color: #fff;" @click="twochange">返回上一级</div>
+						
+						<div>
+							<div v-for="j in arr[ejind].children" style="width:100%;height:40px;background-color: #ccc;line-height: 40px;text-align: center;border-bottom: 1px #fff solid;color: #fff;">
+								{{j.name}}
+							</div>
+						</div>
+					</div>
+				</transition>
+					
+			</div>
+	</div>
+	<template id="on">
+		<div>
+			
+
+		</div>
+	</template>
+</body>
+<script src="vue.js"></script>
+<script src="vue-router.js"></script>
+<script type="text/javascript">
+	Vue.component('nn',{
+		template:"#on",
+		props:['mn','on'],
+		data(){
+			return {
+				tname:this.mn,
+				onech:this.on,
+				arr:[
+				{name:"首页"},
+				{name:"no1",
+					children:[
+						{
+							name:"a"
+						},
+						{
+							name:"b"
+						},
+						{
+							name:"c"
+						}
+					]
+				},
+				{name:"no2"},
+				{name:"no3",
+					children:[
+						{
+							name:"a"
+						},
+						{
+							name:"b"
+						},
+						{
+							name:"c"
+						}
+					]
+				},
+				{name:"no4",
+					children:[
+						{
+							name:"a"
+						},
+						{
+							name:"b"
+						},
+						{
+							name:"c"
+						}
+					]
+				},
+			]
+			}
+		}
+	})
+	new Vue({
+		el:'#box',
+		data:{
+			tname:"one",
+			onech:true,
+			twon:"one",
+			twoch:false,
+			arr:[
+				{name:"首页"},
+				{name:"no1",
+					children:[
+						{
+							name:"no1的二级路由"
+						},
+						{
+							name:"no1的二级路由"
+						},
+						{
+							name:"no1的二级路由"
+						}
+					]
+				},
+				{name:"no2"},
+				{name:"no3",
+					children:[
+						{
+							name:"a"
+						},
+						{
+							name:"b"
+						},
+						{
+							name:"c"
+						}
+					]
+				},
+				{name:"no4",
+					children:[
+						{
+							name:"no4的二级路由"
+						},
+						{
+							name:"no4的二级路由"
+						}
+					]
+				},
+			],
+			ejind:'',
+			// yyg:
+		},
+		methods:{
+			change(){				
+				this.onech=!this.onech
+				
+			},
+			twochange(){
+				this.twoch=false
+				setTimeout(()=>{
+					this.onech=true
+					// this.tname='one'
+				}, 300)
+				setTimeout(()=>{
+					this.tname='one'
+				},300)
+			},
+			erji(index){
+				if(this.arr[index].children){
+					this.tname='no2'
+					this.onech=false
+					
+					setTimeout(()=>{
+						this.ejind=index
+						this.twoch=true
+					}, 300)
+				}
+			}
+		}
+
+	})
+</script>
+</html>

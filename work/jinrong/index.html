@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="background-color: rgb(12, 18, 72);max-width: 1280px;
+    margin: 0 auto;">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.clearfix:after,.clearfix:before{
+			content: '';
+			display: table;
+			clear:both;
+		}
+		.clearfix{
+			zoom:1;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<on1></on1>
+		<on2></on2>
+		<on3></on3>
+	</div>
+	<template id="on1">
+		<div class="clearfix" style="padding:0 40px;">
+			<div style="float: left;margin-top: 80px;width:426px;">
+				<h4 style="font-size: 50px;color: #fff">践行惠普金融<br>助力<span style="color: #1c8dff">美好生活</span></h4>
+				<P style="line-height: 30px;font-size: 14px;color: #fff;padding: 30px 0;">我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上10分钟便可以完成一个H5响应式网站，您会发现完全不需要编写一行代码，这就是起飞页自助建站的神奇之处。</P>
+				<div class="clearfix">
+					<div style="width:152px;height:44px;line-height: 44px;border-radius: 22px;border:1px rgb(28, 141, 255) solid;text-align: center;background-color: rgb(10, 110, 242);color: #fff;float: left;margin-right:38px;  ">联系我们</div>
+					<div style="width:152px;height:44px;line-height: 44px;border-radius: 22px;border:1px rgb(28, 141, 255) solid;text-align: center;color: #fff;float: left; ">点击咨询-></div>
+				</div>
+			</div>
+			<div style="float: left;width:722px;text-align: center;">
+				<img src="https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy8zZDUyMmVkNmVhNmIzYjZhYTBiZWM0YzdhMGQyNzE3Mi5wbmc_p_p100_p_3D.png">
+			</div>
+		</div>
+	</template>
+	<template id="on2">
+		<div style="padding: 0 40px;">
+			<div>
+				<h4 style="font-size: 40px;padding: 0 0  15px;text-align: center;color:#fff">使用流程</h4>
+				<p style="font-size: 14px;color:#fff;text-align: center;">我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上<br>10分钟便可以完成一个H5响应式网站。</p>														
+			</div>
+			<div class="clearfix" style="margin-top: 60px;">
+				<div v-for="i in arr" style="float: left;width:31%;margin-left:1%;margin-right:1%;border-radius: 10px;background-image: url(https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy9mYjZiZGQ0MTM4YWZkMTYwZWE3NzkwOGY2OGNjNDg3ZS5qcGc_p_p100_p_3D.jpg);
+    background-repeat: no-repeat;
+    background-size: cover  ">
+					<div style="text-align: center;height:94px;margin-top: 50px;" >
+						<img :src="i.img_url" style="width:80px;">
+
+					</div>
+					<div style="padding: 20px 0;">
+						<p style="color: #fff;font-size: 20px;text-align: center;padding: 0 0 15px;">{{i.title}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="on3">
+		<div  style="padding: 0 40px;">
+			<div style="padding: 0 0 15px;">
+				<h4 style="font-size: 40px;padding: 0 0  15px;text-align: center;color:#fff">全球服务</h4>
+				<p style="font-size: 14px;color:#fff;text-align: center;">我们的网站构建器，将传统的编码工作转化为直观的拖拽操作和文字录入。在这里，您仅需花上<br>10分钟便可以完成一个H5响应式网站。</p>
+			</div>
+			<div style="padding: 60px 0 0 ">
+				<img src="https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy8yMTg3ZWYyNmI2MDdiZmZlMDQ1MzgyMTNiNDYxMmRiYy5qcGc_p_p100_p_3D.jpg">
+			</div>
+		</div>
+		
+	</template>
+</body>
+	<script src="vue.js"></script>
+	<script type="text/javascript">
+		Vue.component('on1',{
+			template:'#on1',
+			data(){
+				return {
+
+				}
+			}
+		})
+		Vue.component('on2',{
+			template:'#on2',
+			data(){
+				return {
+					arr:[
+						{
+							img_url:"https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy85Y2VmNzcxOGEzZTNiNTBlYzA2YWUzNjYxMzZjMjYxNi5wbmc_p_p100_p_3D.png",
+							title:"创建账户"
+						},
+						{
+							img_url:"https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy8yNGQ5ZmE0MzI4ZGI1NjEwZTQwODkyZmJhZjQxYTNlNS5wbmc_p_p100_p_3D.png",
+							title:"安全保障"
+						},
+						{
+							img_url:"https://ccdn.goodq.top/caches/76b523e47b518e3280b3a453638be094/aHR0cDovLzVkMzk2OWU0NTQxMGMudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNy80ODVmOTZhYTgyYWEzN2E4ODNhYzcxZWMwODEwMDlhZC5wbmc_p_p100_p_3D.png",
+							title:"绑定付款"
+						}
+					]
+				}
+			},
+
+		})
+		Vue.component('on3',{
+			template:'#on3',
+			data(){
+				return {
+
+				}
+			}
+		})
+
+		new Vue({
+			el:'#box',
+			data:{
+
+			}
+
+		})
+	</script>
+</html>
